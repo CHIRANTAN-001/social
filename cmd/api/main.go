@@ -1,6 +1,8 @@
 package main
 
 import (
+	"os"
+
 	"github.com/CHIRANTAN-001/social/internal/db"
 	"github.com/CHIRANTAN-001/social/internal/env"
 	"github.com/CHIRANTAN-001/social/internal/store"
@@ -20,6 +22,16 @@ func main() {
 	if err != nil {
 		logger.Fatal("No .env file found")
 	}
+
+	addr := os.Getenv("ADDR")
+    dbAddr := os.Getenv("DB_ADDR")
+
+    if addr == "" {
+        logger.Fatalw("ADDR environment variable is required")
+    }
+    if dbAddr == "" {
+        logger.Fatalw("DB_ADDR environment variable is required")
+    }
 
 	// Initialize application configuration using environment variables with fallbacks
 	cfg := config{
