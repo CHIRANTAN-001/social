@@ -3,10 +3,10 @@ FROM golang:1.23.8-alpine3.20 AS builder
 WORKDIR /app
 
 COPY go.mod go.sum ./
-RUN go mod tidy
+RUN go mod tidy && go mod download
 
 COPY . .
-RUN go build -o ./bin/main ./cmd/api/main.go
+RUN go build -o ./bin/main ./cmd/api/
 
 # Runtime stage
 FROM alpine:3.20
