@@ -1,38 +1,33 @@
 name: Deploy go backend
 
 on:
-    push:
-        branches:
-          - main
+  push:
+    branches:
+      - main
 
 jobs:
   build:
-       runs-on: ubuntu-latest
-       steps:
-           - name: Checkout Source
-             uses: actions/checkout@v4
-           - name: Create .env file
-             run: |
-                echo "ADDR=${{secrets.ADDR}}" >> .env
-                echo "DB_ADDR=${{secrets.DB_ADDR}}" >> .env
-                cat .env  # Print the file contents to the logs
-                ls -la    # List files to confirm .env exists
-           - name: Login to docker hub
-             run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
-           - name: Build docker image
-             run: docker build -t zebnox/golang_backend .
-           - name: Push docker image
-             run: docker push zebnox/golang_backend:latest
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v4
+      - name: Create .env file
+        run: |
+          echo "ADDR=${{secrets.ADDR}}" >> .env
+          echo "DB_ADDR=${{secrets.DB_ADDR}}" >> .env
+      - name: Login to docker hub
+        run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
+      - name: Build docker image
+        run: docker build -t zebnox/golang_backend .
+      - name: Push docker image
+        run: docker push zebnox/golang_backend:latest
   deploy:
-        needs: build
-        runs-on: self-hosted
-        steps:
-          - name: Pull docker image
-            run: docker pull zebnox/golang_backend:latest
-          - name: Delete old docker container
-            run: docker rm -f golang-backend
-          - name: Run docker container
-            run: docker run -d -p 8080:8080 --name golang-backend zebnox/golang_backend
-
-
-             
+    needs: build
+    runs-on: self-hosted
+    steps:
+      - name: Pull docker image
+        run: docker pull zebnox/golang_backend:latest
+      - name: Delete old docker container
+        run: docker rm -f golang-backend
+      - name: Run docker container
+        run: docker run -d -p 8080:8080 --name golang-backend zebnox/golang_backend

@@ -4,7 +4,6 @@ import (
 	"github.com/CHIRANTAN-001/social/internal/db"
 	"github.com/CHIRANTAN-001/social/internal/env"
 	"github.com/CHIRANTAN-001/social/internal/store"
-	"github.com/joho/godotenv"
 	"go.uber.org/zap"
 )
 
@@ -16,10 +15,10 @@ func main() {
 	defer logger.Sync()
 
 	// Load environment variables from a .env file if present
-	err := godotenv.Load()
-	if err != nil {
-		logger.Fatal("No .env file found")
-	}
+	// err := godotenv.Load()
+	// if err != nil {
+	// 	logger.Fatal("No .env file found")
+	// }
 
 	// Initialize application configuration using environment variables with fallbacks
 	cfg := config{
