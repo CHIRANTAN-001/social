@@ -15,7 +15,6 @@ WORKDIR /app
 COPY --from=builder /app/bin/main ./bin/main
 RUN chmod +x ./bin/main
 
-ENV PORT 8080
-EXPOSE $PORT
+EXPOSE 8080
 
 CMD ["./bin/main"]
