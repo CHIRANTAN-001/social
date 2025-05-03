@@ -6,4 +6,3 @@ tests/
 docs/
 Dockerfile
 *.log
-.env
