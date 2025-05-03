@@ -1,0 +1,8 @@
+// Create migration file
+goose create posts_create sql --dir ./cmd/migrate/migrations/
+
+// Applies the migration
+goose postgres postgres://admin:adminpassword@localhost/socialnetwork?sslmode=disable --dir ./cmd/migrate/migrations/ up
+
+// Reverts the migration
+goose postgres postgres://admin:adminpassword@localhost/socialnetwork?sslmode=disable --dir ./cmd/migrate/migrations/ down
