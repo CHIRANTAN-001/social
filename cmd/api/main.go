@@ -1,12 +1,9 @@
 package main
 
 import (
-	"os"
-
 	"github.com/CHIRANTAN-001/social/internal/db"
 	"github.com/CHIRANTAN-001/social/internal/env"
 	"github.com/CHIRANTAN-001/social/internal/store"
-	"github.com/joho/godotenv"
 	"go.uber.org/zap"
 )
 
@@ -18,20 +15,10 @@ func main() {
 	defer logger.Sync()
 
 	// Load environment variables from a .env file if present
-	err := godotenv.Load()
-	if err != nil {
-		logger.Fatal("No .env file found")
-	}
-
-	addr := os.Getenv("ADDR")
-    dbAddr := os.Getenv("DB_ADDR")
-
-    if addr == "" {
-        logger.Fatalw("ADDR environment variable is required")
-    }
-    if dbAddr == "" {
-        logger.Fatalw("DB_ADDR environment variable is required")
-    }
+	// err := godotenv.Load()
+	// if err != nil {
+	// 	logger.Fatal("No .env file found")
+	// }
 
 	// Initialize application configuration using environment variables with fallbacks
 	cfg := config{
