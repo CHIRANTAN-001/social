@@ -30,7 +30,7 @@ jobs:
           - name: Delete old docker container
             run: docker rm -f golang-backend
           - name: Run docker container
-            run: docker run -d -p 8000:8080 --name golang-backend zebnox/golang_backend
+            run: docker run -d -p 8080:8080 --name golang-backend zebnox/golang_backend
 
 
              
