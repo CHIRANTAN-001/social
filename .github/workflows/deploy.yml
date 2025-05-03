@@ -13,8 +13,10 @@ jobs:
              uses: actions/checkout@v4
            - name: Create .env file
              run: |
-                 echo "ADDR=${{secrets.ADDR}}" >> .env
-                 echo "DB_ADDR=${{secrets.DB_ADDR}}" >> .env
+                echo "ADDR=${{secrets.ADDR}}" >> .env
+                echo "DB_ADDR=${{secrets.DB_ADDR}}" >> .env
+                cat .env  # Print the file contents to the logs
+                ls -la    # List files to confirm .env exists
            - name: Login to docker hub
              run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
            - name: Build docker image
