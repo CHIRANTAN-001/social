@@ -13,6 +13,7 @@ FROM alpine:3.20
 WORKDIR /app
 
 COPY --from=builder /app/bin/main ./bin/main
+COPY .env .env
 RUN chmod +x ./bin/main
 
 EXPOSE 8080
