@@ -23,7 +23,7 @@ func main() {
 
 	// Initialize application configuration using environment variables with fallbacks
 	cfg := config{
-		addr: ":" + env.GetString("ADDR", "8080"),
+		addr: ":" + env.GetString("PORT", "8080"),
 		db: dbConfig{
 			addr:         env.GetString("DB_ADDR", "postgres://admin:adminpassword@localhost/socialnetwork?sslmode=disable"),
 			maxOpenConns: env.GetInt("DB_MAX_OPEN_CONNS", 25),
