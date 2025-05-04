@@ -29,9 +29,6 @@ jobs:
       - name: Checkout Source  
         uses: actions/checkout@v4
       - name: Run shell file
-        run: |
-              sh ./start.sh  
-              sudo chmod 644 /home/ubuntu/.env
-              sudo chown root:root /home/ubuntu/.env
+        run: sh ./start.sh  
       - name: Run docker container
         run: docker run -d --env-file /home/ubuntu/.env -p 8080:8080 --name golang-backend zebnox/golang_backend
