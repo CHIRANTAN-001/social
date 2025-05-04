@@ -29,7 +29,7 @@ def write_to_env_file(secret_json):
     try:
         secret_dict = json.loads(secret_json)
 
-        with open('.env', 'w') as env_file:
+        with open('/home/ubuntu/.env', 'w') as env_file:
             for key, value in secret_dict.items():
                 if isinstance(value, str):
                     if '"' in value or "'" in value or " " in value or "\n" in value:
